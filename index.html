@@ -3,166 +3,118 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Promo N Merch — Custom Apparel & Printing</title>
-  <meta name="description" content="Custom merch done right. Shirts, stickers, Mylar bags, hoodies — fast turnarounds, clean prints, Stripe-secure checkout.">
-  <!-- Fav/OG (swap URLs after your domain is live) -->
-  <link rel="icon" href="assets/favicon.ico">
-  <meta property="og:title" content="Promo N Merch — Custom Apparel & Printing">
-  <meta property="og:description" content="Shirts, stickers, Mylar bags, hoodies — fast turnarounds, clean prints, Stripe-secure checkout.">
-  <meta property="og:image" content="https://www.promonmerch.com/assets/hero-placeholder.jpg">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.promonmerch.com/">
-  <meta name="twitter:card" content="summary_large_image">
-
+  <title>Promo N Merch — Under Construction</title>
+  <meta name="description" content="Promo N Merch — custom apparel, stickers, Mylar bags & hoodies. Site under construction. Payments processed securely by Stripe.">
   <style>
     :root{
-      --bg:#0f1115; --card:#13161c; --card2:#161a22; --text:#eaeaea; --muted:#9aa3ad;
-      --accent:#ff5a1f; --hl:#00e5ff; --radius:14px; --border:#202635;
+      --bg:#0f1115; --card:#13161c; --text:#eaeaea; --muted:#9aa3ad;
+      --accent:#ff5a1f; --border:#202635; --radius:14px;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      background:var(--bg); color:var(--text);
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-    }
-    a{color:inherit; text-decoration:none}
-    .container{max-width:1000px; margin:0 auto; padding:0 16px}
-    header{position:sticky; top:0; z-index:10; background:#10131a; border-bottom:1px solid #151a22}
-    .head-wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:12px}
-    .logo{width:160px; height:44px; background:#222; border-radius:10px} /* TODO: replace with real logo image */
-    nav{display:flex; gap:16px; flex-wrap:wrap}
+    body{margin:0;background:var(--bg);color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1000px;margin:0 auto;padding:24px 16px}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:180px;height:48px;background:#222;border-radius:10px} /* TODO: replace with your banner/logo image */
+    nav{display:flex;gap:14px;flex-wrap:wrap}
     nav a{color:var(--muted)}
     nav a:hover{color:#fff}
-
-    main{padding:28px 0 8px}
-
-    /* HERO */
-    .hero{
-      display:grid; grid-template-columns:1.2fr 1fr; gap:24px; align-items:center;
-      background:var(--card); border-radius:var(--radius); padding:24px; box-shadow:0 12px 40px rgba(0,0,0,.35);
-    }
-    .hero-img{width:100%; border-radius:12px; box-shadow:0 12px 40px rgba(0,0,0,.35)}
-    .hero h1{margin:0 0 8px; font-size:2rem}
-    .lead{color:var(--muted); margin:.5rem 0 1rem}
-    .btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 18px; border-radius:12px; font-weight:700}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:0 8px 28px rgba(0,0,0,.28)}
+    h1,h2{margin:0 0 10px}
+    .lead{color:var(--muted);margin:0 0 18px}
+    .badge{display:inline-block;background:#1a1f27;border:1px solid #222833;border-radius:999px;padding:6px 10px;color:var(--muted);font-size:.9rem;margin-right:8px}
+    .grid{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+    .btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 18px;border-radius:12px;font-weight:700}
     .btn:hover{transform:translateY(-1px)}
-    .trust{color:var(--muted); font-size:.95rem; margin-top:.6rem}
-
-    /* BADGES */
-    .badges{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:18px 0 10px}
-    .badge{background:#1a1f27; color:var(--muted); border:1px solid #222833; padding:8px 12px; border-radius:999px; font-size:.92rem}
-
-    /* FEATURED */
-    section h2{margin:22px 0 10px}
-    .grid{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .card{background:var(--card2); padding:14px; border-radius:12px; border:1px solid var(--border); box-shadow:0 8px 26px rgba(0,0,0,.25)}
-    .card img{width:100%; border-radius:10px; margin-bottom:10px}
-    .muted{color:var(--muted)}
-    .card:hover{transform:translateY(-2px); transition:.15s ease}
-
-    /* PROCESS */
-    .process{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:26px 0}
-    .step{background:#131821; border:1px solid #202738; border-radius:12px; padding:14px; text-align:center; color:#d6d9df}
-
-    /* MINI ABOUT */
-    .btn.alt{background:#2b2f38}
-    .btn.alt:hover{background:#232730}
-
-    footer{margin-top:24px; border-top:1px solid #151a22; padding:22px 0 34px; color:var(--muted); text-align:center}
-
-    @media (max-width:900px){ .hero{grid-template-columns:1fr} }
-    @media (max-width:700px){ .process{grid-template-columns:1fr} }
+    section{margin-top:18px}
+    footer{margin:20px 0 40px;color:var(--muted);text-align:center}
+    .small{font-size:.95rem;color:var(--muted)}
+    @media(max-width:800px){ .grid{grid-template-columns:1fr} header{flex-direction:column;align-items:flex-start} }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container head-wrap">
+  <div class="wrap">
+    <header>
       <div class="brand">
-        <!-- TODO: Replace this placeholder block with your banner/logo image -->
+        <!-- TODO: replace this block with your logo image, e.g. <img src="assets/logo.png" alt="Promo N Merch" class="logo-img"> -->
         <div class="logo" aria-label="Promo N Merch logo placeholder"></div>
-        <strong>Promo N Merch</strong>
+        <div>
+          <strong>Promo N Merch</strong><br>
+          <span class="small">Custom Apparel • Stickers • Mylar Bags • Hoodies</span>
+        </div>
       </div>
       <nav>
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="about.html">About</a>
-        <a href="refunds.html">Refunds</a>
-        <a href="contact.html">Contact</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#refunds">Refunds</a>
+        <a href="#terms">Terms</a>
+        <a href="#privacy">Privacy</a>
       </nav>
+    </header>
+
+    <!-- UNDER CONSTRUCTION -->
+    <section class="card">
+      <h1>Site Under Construction</h1>
+      <p class="lead">We’re building a new experience. In the meantime, you can reach us for custom tees, stickers, Mylar bags, posters, and hoodies.</p>
+      <div style="margin:8px 0 16px;">
+        <span class="badge">Fast turnarounds</span>
+        <span class="badge">Pro-quality prints</span>
+        <span class="badge">Stripe-secure checkout</span>
+      </div>
+      <!-- TODO: when ready, swap this placeholder with your Products page link -->
+      <a class="btn" href="#contact">Start an Order</a>
+      <p class="small" style="margin-top:10px;">Payments processed securely by Stripe.</p>
+    </section>
+
+    <div class="grid">
+      <!-- ABOUT / BUSINESS IDENTITY -->
+      <section id="about" class="card">
+        <h2>About Us</h2>
+        <p>Promo N Merch produces custom apparel and packaging with clean results and quick turnaround times. We serve small drops, events, and brand launches with DTF/screen-printed shirts, sticker packs, custom Mylar bags, posters/canvas, and hoodies.</p>
+        <p class="small"><strong>Location:</strong> Norfolk, VA, USA</p>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="card">
+        <h2>Contact</h2>
+        <p class="small">Questions or ready to order? Email us and we’ll respond quickly.</p>
+        <p><strong>Email:</strong> <a href="mailto:support@promonmerch.com">support@promonmerch.com</a></p>
+        <!-- Optional phone:
+        <p><strong>Phone:</strong> (###) ###-####</p> -->
+        <p class="small">Accepted file types: PDF, PNG, SVG, AI, ZIP. Typical production: 3–7 business days after proof approval.</p>
+      </section>
     </div>
-  </header>
 
-  <main class="container">
-    <!-- HERO -->
-    <section class="hero">
-      <!-- TODO: swap this with your real banner/hero image -->
-      <img class="hero-img" src="assets/hero-placeholder.jpg" alt="Promo N Merch showcase">
-      <div class="hero-content">
-        <h1>Custom Merch, Done Right.</h1>
-        <p class="lead">Shirts, stickers, Mylar bags & hoodies — fast turnarounds, clean prints, pro service.</p>
-        <a class="btn" href="products.html">Shop Products</a>
-        <p class="trust">Payments processed securely by Stripe</p>
-      </div>
+    <!-- POLICIES (embedded so you pass verification with one file) -->
+    <section id="refunds" class="card">
+      <h2>Refund & Return Policy</h2>
+      <p><strong>Custom products:</strong> All items are made-to-order and non-returnable unless defective or incorrect due to our error.</p>
+      <p><strong>Order issues:</strong> Contact us within 7 days of delivery at <a href="mailto:support@promonmerch.com">support@promonmerch.com</a> with your order details and photos.</p>
+      <p><strong>Cancellations:</strong> Orders can be cancelled before production begins. Once printing starts, cancellations may not be possible.</p>
     </section>
 
-    <!-- BADGES -->
-    <section class="badges">
-      <div class="badge">✔ Fast turnarounds</div>
-      <div class="badge">✔ Pro-quality prints</div>
-      <div class="badge">✔ Secure checkout with Stripe</div>
+    <section id="terms" class="card">
+      <h2>Terms of Service</h2>
+      <p><strong>Artwork:</strong> By submitting designs, you confirm you own the rights or have permission to use them. Promo N Merch is not liable for third-party IP claims for customer-supplied artwork.</p>
+      <p><strong>Payments:</strong> All payments are processed securely by Stripe. Work begins after payment confirmation and proof approval.</p>
+      <p><strong>Turnaround & Shipping:</strong> Typical production is 3–7 business days after proof approval. Delivery times vary by carrier and season.</p>
+      <p><strong>Liability:</strong> Our liability is limited to the amount paid for the order.</p>
     </section>
 
-    <!-- FEATURED -->
-    <section>
-      <h2>Featured</h2>
-      <div class="grid">
-        <!-- TODO: replace placeholder images; these cards link to your full Products page -->
-        <a class="card" href="products.html">
-          <img src="assets/product-50-front.jpg" alt="50-Pack Front Print">
-          <strong>50-Pack Front Print</strong>
-          <p class="muted">Entry run. Upload files or request artwork.</p>
-        </a>
-        <a class="card" href="products.html">
-          <img src="assets/product-100-fb.jpg" alt="100-Pack Front & Back">
-          <strong>100-Pack Front & Back</strong>
-          <p class="muted">Best value for bulk drops.</p>
-        </a>
-        <a class="card" href="products.html">
-          <img src="assets/product-hoodie.jpg" alt="Custom Hoodie">
-          <strong>Custom Hoodie</strong>
-          <p class="muted">Cozy blanks, clean embroidery/DTF.</p>
-        </a>
-      </div>
-      <p style="text-align:center;margin-top:14px;"><a class="btn" href="products.html">See All Products</a></p>
+    <section id="privacy" class="card">
+      <h2>Privacy Policy</h2>
+      <p>We collect basic order/contact information you provide and process payments via Stripe. We don’t sell your data. We use HTTPS and reputable processors to keep information secure. You can request updates or deletion by emailing <a href="mailto:support@promonmerch.com">support@promonmerch.com</a>.</p>
     </section>
 
-    <!-- PROCESS -->
-    <section class="process">
-      <div class="step"><strong>1. Upload / Request</strong><br><span>Send files or your idea.</span></div>
-      <div class="step"><strong>2. Approve</strong><br><span>Quick proof for sign-off.</span></div>
-      <div class="step"><strong>3. Print & Ship</strong><br><span>3–7 biz days typical.</span></div>
-    </section>
+    <footer>
+      © <span id="yr"></span> Promo N Merch • Norfolk, VA •
+      <a href="mailto:support@promonmerch.com">support@promonmerch.com</a> •
+      <a href="#privacy">Privacy</a> • <a href="#terms">Terms</a> • <a href="#refunds">Refunds</a>
+    </footer>
+  </div>
 
-    <!-- MINI ABOUT -->
-    <section>
-      <div class="card">
-        <h2>Built for Small Drops & Fast Turnarounds</h2>
-        <p class="muted">Promo N Merch prints custom packs, tees, hoodies, and bags with clean results and quick ship from Norfolk, VA.</p>
-        <p><a class="btn alt" href="about.html">About Us</a></p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © <span id="yr"></span> Promo N Merch • Norfolk, VA •
-    <a href="mailto:support@promonmerch.com" style="color:inherit;">support@promonmerch.com</a> •
-    <a href="privacy.html" style="color:inherit;">Privacy</a> •
-    <a href="terms.html" style="color:inherit;">Terms</a> •
-    <a href="refunds.html" style="color:inherit;">Refunds</a>
-  </footer>
-
-  <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear()</script>
 </body>
 </html>
