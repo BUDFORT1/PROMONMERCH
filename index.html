@@ -4,42 +4,154 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Promo N Merch — Custom Apparel & Printing</title>
-  <meta name="description" content="Custom T-shirts, stickers, Mylar bags, hoodies, and large-format prints. Fast, professional, Stripe-secure checkout.">
+  <meta name="description" content="Custom merch done right. Shirts, stickers, Mylar bags, hoodies — fast turnarounds, clean prints, Stripe-secure checkout.">
+  <!-- Fav/OG (swap URLs after your domain is live) -->
+  <link rel="icon" href="assets/favicon.ico">
+  <meta property="og:title" content="Promo N Merch — Custom Apparel & Printing">
+  <meta property="og:description" content="Shirts, stickers, Mylar bags, hoodies — fast turnarounds, clean prints, Stripe-secure checkout.">
+  <meta property="og:image" content="https://www.promonmerch.com/assets/hero-placeholder.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.promonmerch.com/">
+  <meta name="twitter:card" content="summary_large_image">
+
   <style>
-    :root { --bg:#0f1115; --card:#13161c; --text:#eaeaea; --muted:#9aa3ad; --accent:#ff5a1f; }
-    * { box-sizing:border-box; }
-    body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:var(--text); }
-    header, main, footer { max-width:960px; margin:0 auto; padding:20px; }
-    .nav { display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:center; margin-top:8px; }
-    .nav a { color:var(--muted); text-decoration:none; }
-    .hero { margin:40px 0; background:var(--card); border-radius:14px; padding:32px; text-align:center; }
-    .hero h1 { margin:0 0 8px; font-size:2rem; }
-    .btn { display:inline-block; padding:12px 18px; background:var(--accent); color:#fff; border-radius:10px; text-decoration:none; font-weight:600; margin-top:12px; }
-    .note { color:var(--muted); font-size:.95rem; }
-    footer { color:var(--muted); text-align:center; padding-bottom:40px; }
-    .logo { display:block; width:200px; height:56px; margin:0 auto 10px; background:#222; border-radius:8px; }
+    :root{
+      --bg:#0f1115; --card:#13161c; --card2:#161a22; --text:#eaeaea; --muted:#9aa3ad;
+      --accent:#ff5a1f; --hl:#00e5ff; --radius:14px; --border:#202635;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      background:var(--bg); color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1000px; margin:0 auto; padding:0 16px}
+    header{position:sticky; top:0; z-index:10; background:#10131a; border-bottom:1px solid #151a22}
+    .head-wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{width:160px; height:44px; background:#222; border-radius:10px} /* TODO: replace with real logo image */
+    nav{display:flex; gap:16px; flex-wrap:wrap}
+    nav a{color:var(--muted)}
+    nav a:hover{color:#fff}
+
+    main{padding:28px 0 8px}
+
+    /* HERO */
+    .hero{
+      display:grid; grid-template-columns:1.2fr 1fr; gap:24px; align-items:center;
+      background:var(--card); border-radius:var(--radius); padding:24px; box-shadow:0 12px 40px rgba(0,0,0,.35);
+    }
+    .hero-img{width:100%; border-radius:12px; box-shadow:0 12px 40px rgba(0,0,0,.35)}
+    .hero h1{margin:0 0 8px; font-size:2rem}
+    .lead{color:var(--muted); margin:.5rem 0 1rem}
+    .btn{display:inline-block; background:var(--accent); color:#fff; padding:12px 18px; border-radius:12px; font-weight:700}
+    .btn:hover{transform:translateY(-1px)}
+    .trust{color:var(--muted); font-size:.95rem; margin-top:.6rem}
+
+    /* BADGES */
+    .badges{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:18px 0 10px}
+    .badge{background:#1a1f27; color:var(--muted); border:1px solid #222833; padding:8px 12px; border-radius:999px; font-size:.92rem}
+
+    /* FEATURED */
+    section h2{margin:22px 0 10px}
+    .grid{display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:var(--card2); padding:14px; border-radius:12px; border:1px solid var(--border); box-shadow:0 8px 26px rgba(0,0,0,.25)}
+    .card img{width:100%; border-radius:10px; margin-bottom:10px}
+    .muted{color:var(--muted)}
+    .card:hover{transform:translateY(-2px); transition:.15s ease}
+
+    /* PROCESS */
+    .process{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:26px 0}
+    .step{background:#131821; border:1px solid #202738; border-radius:12px; padding:14px; text-align:center; color:#d6d9df}
+
+    /* MINI ABOUT */
+    .btn.alt{background:#2b2f38}
+    .btn.alt:hover{background:#232730}
+
+    footer{margin-top:24px; border-top:1px solid #151a22; padding:22px 0 34px; color:var(--muted); text-align:center}
+
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} }
+    @media (max-width:700px){ .process{grid-template-columns:1fr} }
   </style>
 </head>
 <body>
   <header>
-    <!-- TODO: replace this placeholder block with your banner/logo image later -->
-    <div class="logo" aria-label="Promo N Merch logo placeholder"></div>
-    <nav class="nav">
-      <!-- TODO: these pages will exist as we add them -->
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="about.html">About</a>
-      <a href="refunds.html">Refunds</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="container head-wrap">
+      <div class="brand">
+        <!-- TODO: Replace this placeholder block with your banner/logo image -->
+        <div class="logo" aria-label="Promo N Merch logo placeholder"></div>
+        <strong>Promo N Merch</strong>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="refunds.html">Refunds</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="container">
+    <!-- HERO -->
     <section class="hero">
-      <h1>Promo N Merch</h1>
-      <p class="note">Custom apparel • Stickers • Mylar bags • Hoodies • Posters & canvas</p>
-      <p><a class="btn" href="products.html">Shop Products</a></p>
-      <p class="note">Payments processed securely by Stripe.</p>
+      <!-- TODO: swap this with your real banner/hero image -->
+      <img class="hero-img" src="assets/hero-placeholder.jpg" alt="Promo N Merch showcase">
+      <div class="hero-content">
+        <h1>Custom Merch, Done Right.</h1>
+        <p class="lead">Shirts, stickers, Mylar bags & hoodies — fast turnarounds, clean prints, pro service.</p>
+        <a class="btn" href="products.html">Shop Products</a>
+        <p class="trust">Payments processed securely by Stripe</p>
+      </div>
+    </section>
+
+    <!-- BADGES -->
+    <section class="badges">
+      <div class="badge">✔ Fast turnarounds</div>
+      <div class="badge">✔ Pro-quality prints</div>
+      <div class="badge">✔ Secure checkout with Stripe</div>
+    </section>
+
+    <!-- FEATURED -->
+    <section>
+      <h2>Featured</h2>
+      <div class="grid">
+        <!-- TODO: replace placeholder images; these cards link to your full Products page -->
+        <a class="card" href="products.html">
+          <img src="assets/product-50-front.jpg" alt="50-Pack Front Print">
+          <strong>50-Pack Front Print</strong>
+          <p class="muted">Entry run. Upload files or request artwork.</p>
+        </a>
+        <a class="card" href="products.html">
+          <img src="assets/product-100-fb.jpg" alt="100-Pack Front & Back">
+          <strong>100-Pack Front & Back</strong>
+          <p class="muted">Best value for bulk drops.</p>
+        </a>
+        <a class="card" href="products.html">
+          <img src="assets/product-hoodie.jpg" alt="Custom Hoodie">
+          <strong>Custom Hoodie</strong>
+          <p class="muted">Cozy blanks, clean embroidery/DTF.</p>
+        </a>
+      </div>
+      <p style="text-align:center;margin-top:14px;"><a class="btn" href="products.html">See All Products</a></p>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process">
+      <div class="step"><strong>1. Upload / Request</strong><br><span>Send files or your idea.</span></div>
+      <div class="step"><strong>2. Approve</strong><br><span>Quick proof for sign-off.</span></div>
+      <div class="step"><strong>3. Print & Ship</strong><br><span>3–7 biz days typical.</span></div>
+    </section>
+
+    <!-- MINI ABOUT -->
+    <section>
+      <div class="card">
+        <h2>Built for Small Drops & Fast Turnarounds</h2>
+        <p class="muted">Promo N Merch prints custom packs, tees, hoodies, and bags with clean results and quick ship from Norfolk, VA.</p>
+        <p><a class="btn alt" href="about.html">About Us</a></p>
+      </div>
     </section>
   </main>
 
@@ -51,6 +163,6 @@
     <a href="refunds.html" style="color:inherit;">Refunds</a>
   </footer>
 
-  <script>document.getElementById('yr').textContent = new Date().getFullYear()</script>
+  <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
 </body>
 </html>
