@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Promo N Merch — Custom Apparel & Printing</title>
+  <meta name="description" content="Custom T-shirts, stickers, Mylar bags, hoodies, and large-format prints. Fast, professional, Stripe-secure checkout.">
+  <style>
+    :root { --bg:#0f1115; --card:#13161c; --text:#eaeaea; --muted:#9aa3ad; --accent:#ff5a1f; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:var(--text); }
+    header, main, footer { max-width:960px; margin:0 auto; padding:20px; }
+    .nav { display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:center; margin-top:8px; }
+    .nav a { color:var(--muted); text-decoration:none; }
+    .hero { margin:40px 0; background:var(--card); border-radius:14px; padding:32px; text-align:center; }
+    .hero h1 { margin:0 0 8px; font-size:2rem; }
+    .btn { display:inline-block; padding:12px 18px; background:var(--accent); color:#fff; border-radius:10px; text-decoration:none; font-weight:600; margin-top:12px; }
+    .note { color:var(--muted); font-size:.95rem; }
+    footer { color:var(--muted); text-align:center; padding-bottom:40px; }
+    .logo { display:block; width:200px; height:56px; margin:0 auto 10px; background:#222; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- TODO: replace this placeholder block with your banner/logo image later -->
+    <div class="logo" aria-label="Promo N Merch logo placeholder"></div>
+    <nav class="nav">
+      <!-- TODO: these pages will exist as we add them -->
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="about.html">About</a>
+      <a href="refunds.html">Refunds</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Promo N Merch</h1>
+      <p class="note">Custom apparel • Stickers • Mylar bags • Hoodies • Posters & canvas</p>
+      <p><a class="btn" href="products.html">Shop Products</a></p>
+      <p class="note">Payments processed securely by Stripe.</p>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="yr"></span> Promo N Merch • Norfolk, VA •
+    <a href="mailto:billing@promonmerch.com" style="color:inherit;">billing@promonmerch.com</a> •
+    <a href="privacy.html" style="color:inherit;">Privacy</a> •
+    <a href="terms.html" style="color:inherit;">Terms</a> •
+    <a href="refunds.html" style="color:inherit;">Refunds</a>
+  </footer>
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear()</script>
+</body>
+</html>
