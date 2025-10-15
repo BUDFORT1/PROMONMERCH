@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Products — Promo N Merch</title>
+  <link rel="stylesheet" href="/assets/site.css" />
+  <style>
+    .products-hero{ padding:clamp(1.5rem,2vw + 1rem,3rem) 0 }
+    .flows{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem }
+    .flow{ font-size:.85rem; padding:.25rem .6rem; border:1px solid var(--border); border-radius:999px; color:var(--muted); background:var(--bg-soft) }
+    .card .btn-row{ display:flex; flex-wrap:wrap; gap:.5rem }
+    .note{ font-size:.92rem; color:var(--muted) }
+    .banner{ border:1px dashed var(--border); padding:.9rem 1rem; border-radius:12px; background:var(--bg-soft); color:var(--muted); }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav__bar">
+      <a class="nav__brand" href="/">Promo N Merch</a>
+      <div class="nav__spacer"></div>
+      <a class="nav__link" href="/#request">Request Artwork</a>
+      <a class="btn btn--brand" href="/products/index.html">Products</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="products-hero">
+    <div class="container stack">
+      <h1 class="mt-0">Products</h1>
+      <p class="lead">Pick a category to start. You can upload art, create simple designs, or request artwork.</p>
+      <div class="banner">⚙️ Site is in early build. Some flows link to placeholders—totally fine while we get your Stripe links and uploader ready.</div>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <main class="section">
+    <div class="container grid grid--auto">
+
+      <!-- T-SHIRTS -->
+      <article class="card">
+        <div class="card__img"><img src="/mockups/tee_front.webp" alt="T-Shirts"></div>
+        <h3>T-Shirts</h3>
+        <p class="muted">DTF prints, soft tees, fast turnarounds.</p>
+        <div class="flows">
+          <span class="flow">Premade</span>
+          <span class="flow">Create</span>
+          <span class="flow">Upload</span>
+          <span class="flow">Request</span>
+        </div>
+        <div class="btn-row mt-3">
+          <a class="btn btn--brand" href="/products/tee.html">Create</a>
+          <a class="btn btn--ghost" href="/upload/tee.html">Upload</a>
+          <a class="btn btn--ghost" href="/request">Request</a>
+        </div>
+        <p class="note mt-2">Premade gallery coming soon.</p>
+      </article>
+
+      <!-- POSTERS & PRINTS -->
+      <article class="card">
+        <div class="card__img"><img src="/mockups/poster.webp" alt="Posters & Prints"></div>
+        <h3>Posters & Prints</h3>
+        <p class="muted">Preset sizes. Clean edges. Vivid color.</p>
+        <div class="flows">
+          <span class="flow">Create</span>
+          <span class="flow">Upload</span>
+          <!-- no Request per your plan -->
+        </div>
+        <div class="btn-row mt-3">
+          <a class="btn btn--brand" href="/products/poster.html">Create</a>
+          <a class="btn btn--ghost" href="/upload/poster.html">Upload</a>
+        </div>
+      </article>
+
+      <!-- MYLAR BAGS -->
+      <article class="card">
+        <div class="card__img"><img src="/mockups/mylar.webp" alt="Mylar Bags"></div>
+        <h3>Mylar Bags</h3>
+        <p class="muted">Front/back print options. Upload or request art.</p>
+        <div class="flows">
+          <span class="flow">Create</span>
+          <span class="flow">Upload</span>
+          <span class="flow">Request</span>
+        </div>
+        <div class="btn-row mt-3">
+          <a class="btn btn--brand" href="/products/mylar.html">Create</a>
+          <a class="btn btn--ghost" href="/upload/mylar.html">Upload</a>
+          <a class="btn btn--ghost" href="/request">Request</a>
+        </div>
+      </article>
+
+      <!-- STICKERS / DECALS -->
+      <article class="card">
+        <div class="card__img"><img src="/mockups/stickers.webp" alt="Stickers & Decals"></div>
+        <h3>Stickers & Decals</h3>
+        <p class="muted">Singles or packs. Upload your PNGs.</p>
+        <div class="flows">
+          <span class="flow">Create</span>
+          <span class="flow">Upload</span>
+          <span class="flow">Request</span>
+        </div>
+        <div class="btn-row mt-3">
+          <a class="btn btn--brand" href="/products/sticker.html">Create</a>
+          <a class="btn btn--ghost" href="/upload/sticker.html">Upload</a>
+          <a class="btn btn--ghost" href="/request">Request</a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- STICKY CTA (mobile) -->
+  <div class="sticky-cta px">
+    <a class="btn btn--brand" href="/products/tee.html">Start with T-Shirts</a>
+    <a class="btn btn--ghost" href="/#request">Request Artwork</a>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="y"></span> Promo N Merch • Norfolk, VA • <a href="mailto:support@promonmerch.com">support@promonmerch.com</a></p>
+    </div>
+  </footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
