@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Classic Tee — Promo N Merch</title>
+  <link rel="stylesheet" href="/assets/site.css" />
+  <style>
+    .product { padding: clamp(1rem, 2vw + 1rem, 3rem) 0; }
+    .product__wrap { display:grid; gap:1.25rem }
+    @media (min-width: 900px){ .product__wrap { grid-template-columns: 1.1fr .9fr; align-items:start } }
+    .gallery { background:var(--bg-soft); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden }
+    .gallery img { width:100%; display:block; aspect-ratio:1/1; object-fit:cover }
+    .panel { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1rem 1.25rem; box-shadow:var(--shadow-sm) }
+    .price-row { display:flex; align-items:baseline; gap:.6rem; }
+    .price { font-weight:800; font-size:1.4rem }
+    .muted-strike { color:var(--muted); text-decoration:line-through; }
+    .opt { display:grid; gap:.5rem; margin-top:1rem }
+    .opt__label { font-weight:700 }
+    .pills { display:flex; flex-wrap:wrap; gap:.5rem }
+    .pill {
+      padding:.55rem .8rem; border:1px solid var(--border); border-radius:999px;
+      background:var(--surface); cursor:pointer; user-select:none;
+      transition:background var(--t), border-color var(--t);
+      font-weight:600; font-size:.95rem;
+    }
+    .pill[aria-checked="true"] { border-color:color-mix(in oklab, var(--brand) 40%, var(--border)); background:color-mix(in oklab,var(--brand) 12%, transparent); }
+    .qty { display:flex; align-items:center; gap:.6rem; margin-top:1rem }
+    .qty input {
+      width:4.5rem; padding:.6rem .7rem; border:1px solid var(--border); border-radius:10px; background:var(--surface); color:var(--text);
+    }
+    .sticky-buy {
+      position:sticky; bottom:0; z-index:40; margin-top:1rem;
+      background:color-mix(in oklab, var(--surface) 95%, transparent);
+      border:1px solid var(--border); border-radius:14px; padding:.75rem;
+      display:flex; gap:.75rem; align-items:center; justify-content:space-between;
+      backdrop-filter:saturate(120%) blur(8px);
+    }
+    .mini-meta { display:flex; gap:1rem; align-items:center; color:var(--muted); font-size:.95rem }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav__bar">
+      <a class="nav__brand" href="/">Promo N Merch</a>
+      <div class="nav__spacer"></div>
+      <a class="nav__link" href="/#products">Products</a>
+      <a class="nav__link" href="/#request">Request Artwork</a>
+    </div>
+  </header>
+
+  <main class="product">
+    <div class="container product__wrap">
+      <!-- GALLERY -->
+      <div class="gallery">
+        <img src="/mockups/tee_front.webp" alt="Classic Tee mockup">
+      </div>
+
+      <!-- DETAILS -->
+      <div class="panel">
+        <h1 class="mt-0">Classic Tee</h1>
+        <div class="price-row">
+          <div class="price" id="price">$14.00</div>
+          <div class="muted mini">Base price</div>
+        </div>
+        <p class="muted mt-2">Soft cotton tee with your design. Print front; add back later if needed.</p>
+
+        <!-- SIZE -->
+        <div class="opt">
+          <div class="opt__label">Size</div>
+          <div class="pills" id="size">
+            <button class="pill" data-val="S" aria-checked="false">S</button>
+            <button class="pill" data-val="M" aria-checked="true">M</button>
+            <button class="pill" data-val="L" aria-checked="false">L</button>
+            <button class="pill" data-val="XL" aria-checked="false">XL</button>
+            <button class="pill" data-val="2XL" aria-checked="false">2XL</button>
+          </div>
+        </div>
+
+        <!-- COLOR -->
+        <div class="opt">
+          <div class="opt__label">Color</div>
+          <div class="pills" id="color">
+            <button class="pill" data-val="Black" aria-checked="true">Black</button>
+            <button class="pill" data-val="White" aria-checked="false">White</button>
+            <button class="pill" data-val="Heather Gray" aria-checked="false">Heather Gray</button>
+          </div>
+        </div>
+
+        <!-- QTY -->
+        <div class="qty">
+          <label for="qty" class="opt__label" style="margin-right:.25rem">Qty</label>
+          <input id="qty" type="number" min="1" value="1" inputmode="numeric" />
+        </div>
+
+        <!-- STICKY BUY -->
+        <div class="sticky-buy">
+          <div class="mini-meta">
+            <span>Subtotal:</span>
+            <strong id="subtotal">$14.00</strong>
+          </div>
+          <a id="checkout" class="btn btn--brand" href="#" rel="noopener">Checkout</a>
+        </div>
+
+        <p class="muted small mt-3">Secure payments by Stripe. Production begins after proof approval.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="y"></span> Promo N Merch • Norfolk, VA • <a href="mailto:support@promonmerch.com">support@promonmerch.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // --- CONFIG: put your Stripe Payment Link here ---
+    // Example: "https://buy.stripe.com/test_XXXXXXXX"
+    // Make sure the Payment Link has "Adjustable quantity" enabled in Stripe
+    const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/REPLACE_ME";
+
+    // --- Page logic (no backend) ---
+    const basePrice = 14.00; // update if needed
+    const priceEl = document.getElementById('price');
+    const subtotalEl = document.getElementById('subtotal');
+    const qtyEl = document.getElementById('qty');
+    const checkoutEl = document.getElementById('checkout');
+
+    // pill toggles
+    function wirePills(groupId){
+      const group = document.getElementById(groupId);
+      group.addEventListener('click', (e)=>{
+        const btn = e.target.closest('.pill'); if(!btn) return;
+        [...group.querySelectorAll('.pill')].forEach(p=>p.setAttribute('aria-checked','false'));
+        btn.setAttribute('aria-checked','true');
+        updateCheckoutHref();
+      });
+    }
+    wirePills('size'); wirePills('color');
+
+    // compute subtotal and link
+    function money(n){ return '$' + n.toFixed(2); }
+    function selected(groupId){
+      const chosen = document.querySelector('#'+groupId+' .pill[aria-checked="true"]');
+      return chosen ? chosen.dataset.val : '';
+    }
+    function updateSubtotal(){
+      const q = Math.max(1, parseInt(qtyEl.value || '1', 10));
+      subtotalEl.textContent = money(basePrice * q);
+    }
+    function updateCheckoutHref(){
+      const q = Math.max(1, parseInt(qtyEl.value || '1', 10));
+      const size = selected('size');
+      const color = selected('color');
+
+      // If your Payment Link supports quantity in the URL, Stripe accepts ?quantity=#
+      // (Enable "Adjustable quantity" on the Payment Link in your Stripe dashboard.)
+      // We also pass a descriptive fragment so YOU can see chosen options after redirect back.
+      const u = new URL(STRIPE_PAYMENT_LINK);
+      u.searchParams.set('quantity', q); // works if adjustable quantity is enabled
+      // Optional: add a note in the URL fragment for your own reference/logs
+      u.hash = encodeURIComponent(`size=${size}&color=${color}`);
+
+      checkoutEl.href = u.toString();
+    }
+    qtyEl.addEventListener('input', ()=>{ updateSubtotal(); updateCheckoutHref(); });
+    updateSubtotal(); updateCheckoutHref();
+  </script>
+</body>
+</html>
