@@ -48,7 +48,93 @@
       <a class="nav__link" href="/#request">Request Artwork</a>
     </div>
   </header>
+<!-- PRODUCT OPTIONS -->
+<div class="panel">
+  <h1 class="mt-0">T-Shirt</h1>
+  <p class="muted">DTF front print by default. Back/sleeves available later.</p>
 
+  <!-- COLOR -->
+  <div class="opt mt-3">
+    <div class="opt__label">Color</div>
+    <div class="pills" id="color">
+      <button class="pill" data-val="Black" aria-checked="true">Black</button>
+      <button class="pill" data-val="White" aria-checked="false">White</button>
+      <button class="pill" data-val="Heather Gray" aria-checked="false">Heather Gray</button>
+    </div>
+  </div>
+
+  <!-- SIZE -->
+  <div class="opt">
+    <div class="opt__label">Size</div>
+    <div class="pills" id="size">
+      <button class="pill" data-val="S" aria-checked="false">S</button>
+      <button class="pill" data-val="M" aria-checked="true">M</button>
+      <button class="pill" data-val="L" aria-checked="false">L</button>
+      <button class="pill" data-val="XL" aria-checked="false">XL</button>
+      <button class="pill" data-val="2XL" aria-checked="false">2XL</button>
+    </div>
+  </div>
+
+  <!-- QTY -->
+  <div class="qty">
+    <label for="qty" class="opt__label" style="margin-right:.25rem">Qty</label>
+    <input id="qty" class="input" type="number" min="1" value="1" inputmode="numeric"/>
+  </div>
+
+  <!-- STICKY CUSTOMIZE BAR -->
+  <div class="sticky-buy" id="customizeBar">
+    <div class="mini-meta">
+      <span>Selected:</span>
+      <strong id="selText">M / Black</strong>
+      <span>·</span>
+      <span>Qty <strong id="selQty">1</strong></span>
+    </div>
+    <a id="customizeBtn" class="btn btn--brand" href="/create/tee.html">Customize</a>
+  </div>
+
+  <p class="muted small mt-3">Next step opens the customizer with your size, color, and quantity.</p>
+</div>
+
+<script>
+  // --- helpers
+  function wirePills(groupId){
+    const group = document.getElementById(groupId);
+    group.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.pill'); if(!btn) return;
+      [...group.querySelectorAll('.pill')].forEach(p=>p.setAttribute('aria-checked','false'));
+      btn.setAttribute('aria-checked','true');
+      updateUI();
+    });
+  }
+  function selected(groupId){
+    const el = document.querySelector('#'+groupId+' .pill[aria-checked="true"]');
+    return el ? el.dataset.val : "";
+  }
+  function updateUI(){
+    const size  = selected('size')  || '';
+    const color = selected('color') || '';
+    const qty   = Math.max(1, parseInt(qtyEl.value || '1', 10));
+    selText.textContent = `${size || '—'} / ${color || '—'}`;
+    selQty.textContent  = qty;
+
+    // build URL for customizer
+    const u = new URL('/create/tee.html', location.origin);
+    u.searchParams.set('size', size);
+    u.searchParams.set('color', color);
+    u.searchParams.set('qty', qty);
+    customizeBtn.href = u.pathname + '?' + u.searchParams.toString();
+  }
+
+  // --- wire up
+  const qtyEl = document.getElementById('qty');
+  const selText = document.getElementById('selText');
+  const selQty  = document.getElementById('selQty');
+  const customizeBtn = document.getElementById('customizeBtn');
+
+  wirePills('size'); wirePills('color');
+  qtyEl.addEventListener('input', updateUI);
+  updateUI(); // initial
+</script>
   <main class="product">
     <div class="container product__wrap">
       <!-- GALLERY -->
