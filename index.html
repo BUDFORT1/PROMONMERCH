@@ -20,7 +20,7 @@
         <a class="nav__link" href="#terms">Terms</a>
         <a class="nav__link" href="#privacy">Privacy</a>
       </nav>
-      <a class="btn btn--brand" href="#" id="cta-top">Start an Order</a>
+      
     </div>
   </header>
 
@@ -93,9 +93,9 @@
   </footer>
 
   <script>
-  // Send all Start an Order CTAs to the Products Hub
   const productPage = '/products/index.html';
-  ['cta-top','cta-hero','cta-bottom'].forEach(id=>{
+  // Only wire hero + sticky buttons now
+  ['cta-hero','cta-bottom'].forEach(id=>{
     const el = document.getElementById(id); if(el) el.href = productPage;
   });
   document.getElementById('y').textContent = new Date().getFullYear();
