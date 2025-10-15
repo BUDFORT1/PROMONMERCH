@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Customize — T-Shirt | Promo N Merch</title>
+  <link rel="stylesheet" href="/assets/site.css"/>
+  <style>
+    .customizer { padding: clamp(1rem, 2vw + 1rem, 3rem) 0; }
+    .wrap { display:grid; gap:1rem }
+    @media (min-width: 1000px){ .wrap { grid-template-columns: 1.2fr .8fr; align-items:start } }
+    .stage { background:var(--bg-soft); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; box-shadow:var(--shadow-sm); }
+    .canvas-wrap { position:relative; width:100%; max-width:680px; margin:0 auto; }
+    .mock { width:100%; border-radius:var(--radius-sm); display:block; background:#eaeaea; }
+    .print-area {
+      position:absolute; inset:auto 0 0 0; /* will be set by JS exact placement */
+      border:2px dashed rgba(0,0,0,.18);
+      border-radius:8px; pointer-events:none;
+    }
+    .controls .group { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1rem 1.1rem; box-shadow:var(--shadow-sm) }
+    .controls .group + .group { margin-top: .75rem }
+    .row { display:grid; gap:.5rem; grid-template-columns: 1fr 1fr }
+    .row-3 { display:grid; gap:.5rem; grid-template-columns: 1fr 1fr 1fr }
+    .row-1 { display:grid; gap:.5rem; grid-template-columns: 1fr }
+    .note { color:var(--muted); font-size:.92rem }
+    .meters { display:flex; align-items:center; gap:.5rem; }
+    .meters output { min-width:3ch; text-align:right; }
+    .btn-row { display:flex; flex-wrap:wrap; gap:.5rem }
+    .legend { display:flex; align-items:center; gap:.4rem; color:var(--muted); font-size:.9rem; }
+    .legend i { width:10px; height:10px; border:2px dashed rgba(0,0,0,.3); display:inline-block; border-radius:2px }
+    /* draggable handles visual hint */
+    .hint { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); font-size:.9rem; color:rgba(0,0,0,.6); background:rgba(255,255,255,.6); padding:.25rem .5rem; border-radius:6px }
+  </style>
+</head>
+<body>
+<header class="nav">
+  <div class="container nav__bar">
+    <a class="nav__brand" href="/">Promo N Merch</a>
+    <div class="nav__spacer"></div>
+    <a class="nav__link" href="/products/index.html">Products</a>
+  </div>
+</header>
+
+<main class="customizer">
+  <div class="container wrap">
+    <!-- STAGE -->
+    <section class="stage">
+      <div class="canvas-wrap" id="canvasWrap" aria-live="polite">
+        <!-- Shirt mock (you can swap this image anytime) -->
+        <img id="mock" class="mock" src="/mockups/tee_front.webp" alt="T-Shirt mockup">
+
+        <!-- Canvas sits absolutely on top of the print area -->
+        <canvas id="cvs" style="position:absolute; left:0; top:0;"></canvas>
+        <div id="printBox" class="print-area" aria-hidden="true"></div>
+        <div id="dragHint" class="hint" style="display:none;">Drag to move • pinch/slider to scale</div>
+      </div>
+      <div class="legend mt-2"><i></i> Printable area preview</div>
+      <p class="note mt-2">Tip: upload a PNG with transparent background for best results.</p>
+    </section>
+
+    <!-- CONTROLS -->
+    <aside class="controls">
+      <div class="group">
+        <h3 class="mt-0">Order Options</h3>
+        <div class="row-3">
+          <label class="label">Size
+            <select class="select" id="optSize">
+              <option>S</option><option selected>M</option><option>L</option><option>XL</option><option>2XL</option>
+            </select>
+          </label>
+          <label class="label">Color
+            <select class="select" id="optColor">
+              <option>Black</option><option>White</option><option>Heather Gray</option>
+            </select>
+          </label>
+          <label class="label">Qty
+            <input class="input" id="optQty" type="number" min="1" value="1" inputmode="numeric">
+          </label>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3 class="mt-0">Artwork</h3>
+        <div class="row-1">
+          <label class="label">Upload Image
+            <input class="input" id="imgInput" type="file" accept="image/*">
+          </label>
+          <div class="meters">
+            <label class="label" for="imgScale" style="min-width:6rem">Scale</label>
+            <input id="imgScale" type="range" min="10" max="300" value="100" style="width:100%">
+            <output id="imgScaleOut">100%</output>
+          </div>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3 class="mt-0">Text</h3>
+        <div class="row-1">
+          <input class="input" id="txt" placeholder="Add a line of text">
+        </div>
+        <div class="row">
+          <select class="select" id="font">
+            <option value="Inter, system-ui, sans-serif" selected>Inter / System</option>
+            <option value="Arial, Helvetica, sans-serif">Arial</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="'Courier New', monospace">Courier New</option>
+          </select>
+          <input class="input" id="txtColor" type="color" value="#111111" title="Text color">
+        </div>
+        <div class="meters">
+          <label class="label" for="txtSize" style="min-width:6rem">Size</label>
+          <input id="txtSize" type="range" min="10" max="200" value="48" style="width:100%">
+          <output id="txtSizeOut">48px</output>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3 class="mt-0">Actions</h3>
+        <div class="btn-row">
+          <button id="btnDownload" class="btn btn--brand" type="button">Download Preview</button>
+          <button id="btnClear" class="btn btn--ghost" type="button">Clear</button>
+        </div>
+        <p class="note mt-2">This downloads a <strong>preview PNG</strong> (transparent background) of your design area.</p>
+      </div>
+
+      <div class="group">
+        <h3 class="mt-0">Next Step</h3>
+        <p class="note">When you’re happy, continue. We’ll hook this to your backend quote endpoint next.</p>
+        <div class="btn-row">
+          <a id="btnContinue" class="btn btn--brand" href="/products/tee.html">Back to Product</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>© <span id="y"></span> Promo N Merch • <a class="link" href="mailto:support@promonmerch.com">support@promonmerch.com</a></p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+
+  // ---- Prefill from URL (?size=&color=&qty=)
+  const qs = new URLSearchParams(location.search);
+  const optSize = document.getElementById('optSize');
+  const optColor = document.getElementById('optColor');
+  const optQty = document.getElementById('optQty');
+  if (qs.get('size'))  optSize.value  = qs.get('size');
+  if (qs.get('color')) optColor.value = qs.get('color');
+  if (qs.get('qty'))   optQty.value   = Math.max(1, parseInt(qs.get('qty'),10)||1);
+
+  // ---- Canvas + drag/scale
+  const mock = document.getElementById('mock');
+  const cvs = document.getElementById('cvs');
+  const ctx = cvs.getContext('2d');
+  const printBox = document.getElementById('printBox');
+  const dragHint = document.getElementById('dragHint');
+
+  // design objects
+  let imgObj = { img:null, x:0, y:0, w:0, h:0, scale:1 };
+  let textObj = { text:'', x:0, y:0, size:48, color:'#111111', font:"Inter, system-ui, sans-serif", scale:1 };
+  let active = null; // 'img' or 'text'
+
+  // print area config (relative to mock image)
+  const PRINT = { // percentages of mock size; tweak these to fit your mock
+    left: 0.22,  // 22% from left
+    top:  0.18,  // 18% from top
+    width: 0.56, // 56% width
+    height:0.62  // 62% height
+  };
+
+  function layout() {
+    // position canvas to match print area over the mock image
+    const rect = mock.getBoundingClientRect();
+    const left = rect.left + rect.width * PRINT.left + window.scrollX;
+    const top  = rect.top  + rect.height* PRINT.top  + window.scrollY;
+    const w    = rect.width * PRINT.width;
+    const h    = rect.height* PRINT.height;
+
+    cvs.style.left = (rect.width * PRINT.left) + 'px';
+    cvs.style.top  = (rect.height* PRINT.top)  + 'px';
+    cvs.width  = Math.round(w);
+    cvs.height = Math.round(h);
+
+    // visual dashed print box
+    printBox.style.left = (rect.width * PRINT.left) + 'px';
+    printBox.style.top  = (rect.height* PRINT.top)  + 'px';
+    printBox.style.width  = w + 'px';
+    printBox.style.height = h + 'px';
+
+    draw();
+  }
+
+  function clearCanvas() { ctx.clearRect(0,0,cvs.width,cvs.height); }
+
+  function draw() {
+    clearCanvas();
+    // draw image
+    if (imgObj.img) {
+      const iw = imgObj.w * imgObj.scale;
+      const ih = imgObj.h * imgObj.scale;
+      ctx.drawImage(imgObj.img, imgObj.x - iw/2, imgObj.y - ih/2, iw, ih);
+    }
+    // draw text
+    if (textObj.text) {
+      ctx.save();
+      ctx.fillStyle = textObj.color;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const px = Math.max(10, textObj.size * textObj.scale);
+      ctx.font = `700 ${px}px ${textObj.font}`;
+      wrapText(textObj.text, textObj.x, textObj.y, cvs.width*0.9, px * 1.2);
+      ctx.restore();
+    }
+  }
+
+  function wrapText(text, x, y, maxWidth, lineHeight) {
+    // simple wrap on spaces
+    const words = text.split(' ');
+    let line = '';
+    let lines = [];
+    for (let w of words) {
+      const test = line ? (line + ' ' + w) : w;
+      const m = ctx.measureText(test);
+      if (m.width > maxWidth && line) { lines.push(line); line = w; }
+      else { line = test; }
+    }
+    if (line) lines.push(line);
+    const total = lines.length * lineHeight;
+    let yy = y - total/2 + lineHeight/2;
+    lines.forEach(l => { ctx.fillText(l, x, yy); yy += lineHeight; });
+  }
+
+  // ---- File upload
+  const imgInput = document.getElementById('imgInput');
+  const imgScale = document.getElementById('imgScale');
+  const imgScaleOut = document.getElementById('imgScaleOut');
+
+  imgInput.addEventListener('change', e=>{
+    const file = e.target.files?.[0]; if(!file) return;
+    const url = URL.createObjectURL(file);
+    const im = new Image();
+    im.onload = () => {
+      imgObj.img = im;
+      // start at center
+      imgObj.w = im.width; imgObj.h = im.height;
+      imgObj.scale = Math.min(cvs.width / im.width, cvs.height / im.height) * 0.7;
+      imgObj.x = cvs.width/2; imgObj.y = cvs.height/2;
+      active = 'img';
+      dragHint.style.display = 'block';
+      draw();
+    };
+    im.src = url;
+  });
+
+  imgScale.addEventListener('input', ()=>{
+    imgScaleOut.textContent = imgScale.value + '%';
+    if (imgObj.img) { imgObj.scale = parseInt(imgScale.value,10)/100; draw(); }
+  });
+
+  // ---- Text inputs
+  const txt = document.getElementById('txt');
+  const txtSize = document.getElementById('txtSize');
+  const txtSizeOut = document.getElementById('txtSizeOut');
+  const txtColor = document.getElementById('txtColor');
+  const fontSel = document.getElementById('font');
+
+  function ensureTextInit(){
+    if (!textObj.text) {
+      textObj.x = cvs.width/2; textObj.y = cvs.height*0.75;
+    }
+  }
+
+  txt.addEventListener('input', ()=>{ ensureTextInit(); textObj.text = txt.value; draw(); });
+  txtSize.addEventListener('input', ()=>{
+    txtSizeOut.textContent = txtSize.value + 'px';
+    textObj.size = parseInt(txtSize.value,10)||48; draw();
+  });
+  txtColor.addEventListener('input', ()=>{ textObj.color = txtColor.value; draw(); });
+  fontSel.addEventListener('change', ()=>{ textObj.font = fontSel.value; draw(); });
+
+  // ---- Drag interactions (mouse + touch)
+  function pickTarget(x, y) {
+    // priority: image if exists and pointer is close; else text
+    if (imgObj.img) {
+      const iw = imgObj.w * imgObj.scale, ih = imgObj.h * imgObj.scale;
+      if (x > imgObj.x - iw/2 && x < imgObj.x + iw/2 && y > imgObj.y - ih/2 && y < imgObj.y + ih/2) return 'img';
+    }
+    if (textObj.text) return 'text';
+    return null;
+  }
+
+  function getPos(ev) {
+    const r = cvs.getBoundingClientRect();
+    const clientX = ev.touches ? ev.touches[0].clientX : ev.clientX;
+    const clientY = ev.touches ? ev.touches[0].clientY : ev.clientY;
+    return { x: clientX - r.left, y: clientY - r.top };
+  }
+
+  let dragging = false, dx = 0, dy = 0;
+  function down(ev){
+    ev.preventDefault();
+    const p = getPos(ev);
+    active = pickTarget(p.x, p.y);
+    if (!active) return;
+    dragging = true; dragHint.style.display = 'none';
+    if (active === 'img') { dx = p.x - imgObj.x; dy = p.y - imgObj.y; }
+    if (active === 'text'){ dx = p.x - textObj.x; dy = p.y - textObj.y; }
+  }
+  function move(ev){
+    if (!dragging) return;
+    const p = getPos(ev);
+    if (active === 'img') { imgObj.x = p.x - dx; imgObj.y = p.y - dy; }
+    if (active === 'text'){ textObj.x = p.x - dx; textObj.y = p.y - dy; }
+    draw();
+  }
+  function up(){ dragging = false; }
+
+  cvs.addEventListener('mousedown', down);
+  cvs.addEventListener('mousemove', move);
+  window.addEventListener('mouseup', up);
+
+  cvs.addEventListener('touchstart', down, {passive:false});
+  cvs.addEventListener('touchmove', move, {passive:false});
+  window.addEventListener('touchend', up);
+
+  // simple pinch to scale (image only)
+  let pinchStart = 0;
+  cvs.addEventListener('touchstart', e=>{
+    if(e.touches.length===2 && imgObj.img){
+      const d = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      pinchStart = d; active = 'img';
+    }
+  }, {passive:false});
+  cvs.addEventListener('touchmove', e=>{
+    if(e.touches.length===2 && imgObj.img && pinchStart){
+      const d = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      const ratio = d / pinchStart;
+      imgObj.scale = Math.min(3, Math.max(0.1, imgObj.scale * ratio));
+      pinchStart = d;
+      imgScale.value = Math.round(imgObj.scale * 100);
+      imgScaleOut.textContent = imgScale.value + '%';
+      draw();
+    }
+  }, {passive:false});
+  window.addEventListener('touchend', ()=>{ pinchStart = 0; });
+
+  // ---- Clear
+  document.getElementById('btnClear').addEventListener('click', ()=>{
+    imgObj = { img:null, x:0, y:0, w:0, h:0, scale:1 };
+    textObj = { text:'', x:0, y:0, size:48, color:'#111111', font:"Inter, system-ui, sans-serif", scale:1 };
+    txt.value = ''; txtSize.value = 48; txtSizeOut.textContent = '48px';
+    imgScale.value = 100; imgScaleOut.textContent = '100%';
+    draw();
+  });
+
+  // ---- Download (transparent PNG of design area only)
+  document.getElementById('btnDownload').addEventListener('click', ()=>{
+    cvs.toBlob(blob=>{
+      if(!blob) return;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const safeName = `tee-design-${Date.now()}.png`;
+      a.href = url; a.download = safeName; a.click();
+      setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    }, 'image/png');
+  });
+
+  // ---- Layout on load & resize
+  function ready(){ layout(); }
+  mock.addEventListener('load', ready);
+  window.addEventListener('resize', layout);
+  // If mock is cached:
+  if (mock.complete) ready();
+</script>
+</body>
+</html>
