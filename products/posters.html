@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Posters & Prints — Promo N Merch</title>
+<link rel="stylesheet" href="/assets/site.css"/>
+<style>
+  .product{padding:clamp(1rem,2vw + 1rem,3rem) 0}
+  .product__wrap{display:grid;gap:1.25rem}
+  @media(min-width:900px){.product__wrap{grid-template-columns:1.1fr .9fr;align-items:start}}
+  .gallery{background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+  .gallery img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;box-shadow:var(--shadow-sm)}
+  .btn-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.75rem}
+</style>
+</head><body>
+<header class="nav"><div class="container nav__bar">
+  <a class="nav__brand" href="/">Promo N Merch</a><div class="nav__spacer"></div>
+  <a class="nav__link" href="/products/index.html">Products</a>
+</div></header>
+
+<main class="product"><div class="container product__wrap">
+  <div class="gallery"><img src="/mockups/poster.webp" alt="Poster mockup"></div>
+  <div class="panel">
+    <h1 class="mt-0">Posters & Prints</h1>
+    <p class="muted">Preset sizes only. Clean borders. Vivid pigment color.</p>
+    <div class="btn-row">
+      <a class="btn btn--brand" href="/create/poster.html">Create</a>
+      <a class="btn btn--ghost" href="/upload/poster.html">Upload</a>
+    </div>
+    <p class="muted small mt-3">No Request flow for posters per your plan.</p>
+  </div>
+</div></main>
+
+<footer class="footer"><div class="container"><p>© <span id="y"></span> Promo N Merch • Norfolk, VA • <a href="mailto:support@promonmerch.com">support@promonmerch.com</a></p></div></footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body></html>
