@@ -1,94 +1,104 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Promo N Merch — Under Construction</title>
-  <meta name="description" content="Promo N Merch — custom apparel, stickers, Mylar bags & hoodies. Site under construction. Payments processed securely by Stripe.">
-  <!-- link to external CSS -->
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Promo N Merch — Custom Apparel, Stickers & Mylar</title>
+  <meta name="description" content="Custom tees, stickers, Mylar bags, posters and hoodies. Fast turnarounds. Stripe-secure checkout." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
-
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <!-- TODO: replace this placeholder with your logo image -->
-        <div class="logo" aria-label="Promo N Merch logo placeholder"></div>
-        <div>
-          <strong>Promo N Merch</strong><br>
-          <span class="small">Custom Apparel • Stickers • Mylar Bags • Hoodies</span>
-        </div>
-      </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#refunds">Refunds</a>
-        <a href="#terms">Terms</a>
-        <a href="#privacy">Privacy</a>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav__bar">
+      <a class="nav__brand" href="#">Promo N Merch</a>
+      <nav class="nav__links">
+        <a class="nav__link" href="#about">About</a>
+        <a class="nav__link" href="#contact">Contact</a>
+        <a class="nav__link" href="#refunds">Refunds</a>
+        <a class="nav__link" href="#terms">Terms</a>
+        <a class="nav__link" href="#privacy">Privacy</a>
       </nav>
-    </header>
-
-    <!-- UNDER CONSTRUCTION -->
-    <section class="card">
-      <h1>Site Under Construction</h1>
-      <p class="lead">We’re building a new experience. In the meantime, you can reach us for custom tees, stickers, Mylar bags, posters, and hoodies.</p>
-      <div style="margin:8px 0 16px;">
-        <span class="badge">Fast turnarounds</span>
-        <span class="badge">Pro-quality prints</span>
-        <span class="badge">Stripe-secure checkout</span>
-      </div>
-      <a class="btn" href="#contact">Start an Order</a>
-      <p class="small" style="margin-top:10px;">Payments processed securely by Stripe.</p>
-    </section>
-
-    <div class="grid">
-      <!-- ABOUT -->
-      <section id="about" class="card">
-        <h2>About Us</h2>
-        <p>Promo N Merch produces custom apparel and packaging with clean results and quick turnaround times. We serve small drops, events, and brand launches with DTF/screen-printed shirts, sticker packs, custom Mylar bags, posters/canvas, and hoodies.</p>
-        <p class="small"><strong>Location:</strong> Norfolk, VA, USA</p>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact" class="card">
-        <h2>Contact</h2>
-        <p class="small">Questions or ready to order? Email us and we’ll respond quickly.</p>
-        <p><strong>Email:</strong> <a href="mailto:support@promonmerch.com">support@promonmerch.com</a></p>
-        <p class="small">Accepted file types: PDF, PNG, SVG, AI, ZIP. Typical production: 3–7 business days after proof approval.</p>
-      </section>
+      <a class="btn btn--brand" href="#" id="cta-top">Start an Order</a>
     </div>
+  </header>
 
-    <!-- POLICIES -->
-    <section id="refunds" class="card">
-      <h2>Refund & Return Policy</h2>
-      <p><strong>Custom products:</strong> All items are made-to-order and non-returnable unless defective or incorrect due to our error.</p>
-      <p><strong>Order issues:</strong> Contact us within 7 days of delivery at <a href="mailto:support@promonmerch.com">support@promonmerch.com</a> with your order details and photos.</p>
-      <p><strong>Cancellations:</strong> Orders can be cancelled before production begins. Once printing starts, cancellations may not be possible.</p>
-    </section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__wrap">
+      <span class="hero__tag">Site Under Construction</span>
+      <h1>Custom Apparel • Stickers • Mylar Bags • Hoodies</h1>
+      <p class="lead">We’re building a new experience. In the meantime, reach us for tees, stickers, Mylar bags, posters, and hoodies. Fast turnarounds. Pro-quality prints. Stripe-secure checkout.</p>
+      <div class="hero__cta">
+        <a class="btn btn--brand" href="#" id="cta-hero">Start an Order</a>
+        <a class="btn btn--ghost" href="#contact">Email Us</a>
+      </div>
+      <p class="muted small">Payments processed securely by Stripe.</p>
+    </div>
+  </section>
 
-    <section id="terms" class="card">
-      <h2>Terms of Service</h2>
-      <p><strong>Artwork:</strong> By submitting designs, you confirm you own the rights or have permission to use them. Promo N Merch is not liable for third-party IP claims for customer-supplied artwork.</p>
-      <p><strong>Payments:</strong> All payments are processed securely by Stripe. Work begins after payment confirmation and proof approval.</p>
-      <p><strong>Turnaround & Shipping:</strong> Typical production is 3–7 business days after proof approval. Delivery times vary by carrier and season.</p>
-      <p><strong>Liability:</strong> Our liability is limited to the amount paid for the order.</p>
-    </section>
+  <!-- INFO SECTIONS -->
+  <main class="section">
+    <div class="container grid grid--two">
+      <article id="about" class="surface px py">
+        <h2>About Us</h2>
+        <p>Promo N Merch produces custom apparel and packaging with clean results and quick turnaround times. We serve small drops, events, and brand launches with DTF/screen-printed shirts, sticker packs, custom Mylar bags, posters/canvas, and hoodies. <strong>Location:</strong> Norfolk, VA, USA.</p>
+      </article>
 
-    <section id="privacy" class="card">
-      <h2>Privacy Policy</h2>
-      <p>We collect basic order/contact information you provide and process payments via Stripe. We don’t sell your data. We use HTTPS and reputable processors to keep information secure. You can request updates or deletion by emailing <a href="mailto:support@promonmerch.com">support@promonmerch.com</a>.</p>
-    </section>
+      <article id="contact" class="surface px py">
+        <h2>Contact</h2>
+        <p>Questions or ready to order? Email us and we’ll respond quickly.</p>
+        <p><a class="link" href="mailto:support@promonmerch.com">support@promonmerch.com</a></p>
+        <p class="muted small">Accepted file types: PDF, PNG, SVG, AI, ZIP. Typical production: 3–7 business days after proof approval.</p>
+      </article>
 
-    <footer>
-      © <span id="yr"></span> Promo N Merch • Norfolk, VA •
-      <a href="mailto:support@promonmerch.com">support@promonmerch.com</a> •
-      <a href="#privacy">Privacy</a> • <a href="#terms">Terms</a> • <a href="#refunds">Refunds</a>
-    </footer>
+      <article id="refunds" class="surface px py">
+        <h2>Refund & Return Policy</h2>
+        <ul class="list">
+          <li><strong>Custom products:</strong> Made-to-order and non-returnable unless defective or incorrect due to our error.</li>
+          <li><strong>Order issues:</strong> Contact us within 7 days of delivery at <a href="mailto:support@promonmerch.com">support@promonmerch.com</a> with order details and photos.</li>
+          <li><strong>Cancellations:</strong> Allowed before production begins; once printing starts, cancellations may not be possible.</li>
+        </ul>
+      </article>
+
+      <article id="terms" class="surface px py">
+        <h2>Terms of Service</h2>
+        <ul class="list">
+          <li><strong>Artwork:</strong> You confirm rights to submitted designs; we aren’t liable for third-party IP claims for customer-supplied artwork.</li>
+          <li><strong>Payments:</strong> Processed securely by Stripe. Work begins after payment confirmation and proof approval.</li>
+          <li><strong>Turnaround & Shipping:</strong> Typically 3–7 business days after proof approval; delivery times vary by carrier/season.</li>
+          <li><strong>Liability:</strong> Limited to the amount paid for the order.</li>
+        </ul>
+      </article>
+
+      <article id="privacy" class="surface px py">
+        <h2>Privacy Policy</h2>
+        <p>We collect basic order/contact information you provide and process payments via Stripe. We don’t sell your data. We use HTTPS and reputable processors to keep information secure. You can request updates or deletion by emailing <a href="mailto:support@promonmerch.com">support@promonmerch.com</a>.</p>
+      </article>
+    </div>
+  </main>
+
+  <!-- STICKY CTA (mobile) -->
+  <div class="sticky-cta px">
+    <a class="btn btn--brand" href="#" id="cta-bottom">Start an Order</a>
+    <a class="btn btn--ghost" href="mailto:support@promonmerch.com">Email Us</a>
   </div>
 
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="y"></span> Promo N Merch • Norfolk, VA • <a href="mailto:support@promonmerch.com">support@promonmerch.com</a></p>
+    </div>
+  </footer>
+
   <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // TODO: replace "#" with your Stripe Payment Link:
+    const pay = '#';
+    ['cta-top','cta-hero','cta-bottom'].forEach(id=>{
+      const el = document.getElementById(id); if(el) el.href = pay;
+    });
   </script>
 </body>
 </html>
