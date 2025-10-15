@@ -93,12 +93,12 @@
   </footer>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-    // TODO: replace "#" with your Stripe Payment Link:
-    const pay = '#';
-    ['cta-top','cta-hero','cta-bottom'].forEach(id=>{
-      const el = document.getElementById(id); if(el) el.href = pay;
-    });
-  </script>
+  // Send all Start an Order CTAs to the Products Hub
+  const productPage = '/products/index.html';
+  ['cta-top','cta-hero','cta-bottom'].forEach(id=>{
+    const el = document.getElementById(id); if(el) el.href = productPage;
+  });
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
