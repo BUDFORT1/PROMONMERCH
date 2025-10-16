@@ -2,14 +2,18 @@ name = "promonmerch-api"
 main = "src/index.js"
 compatibility_date = "2025-10-15"
 
+# Optional: set an env flag you can read in code
 [vars]
 ENVIRONMENT = "dev"
 
-[[d1_databases]]
-binding = "DB"
-database_name = "promonmerch"
-database_id = "your-d1-id"
+# (Add your real IDs/names later in Cloudflare dashboard)
+# D1 database binding (optional now)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "promonmerch"
+# database_id = "REPLACE_WITH_D1_ID"
 
-[[r2_buckets]]
-binding = "R2"
-bucket_name = "promonmerch-assets"
+# R2 bucket binding (optional now)
+# [[r2_buckets]]
+# binding = "R2"
+# bucket_name = "promonmerch-assets"
