@@ -1,0 +1,67 @@
+[
+  {
+    "id": "pm-001",
+    "product_slug": "tshirt",
+    "name": "Retro Wave",
+    "thumb_url": "/assets/premades/tshirt/pm-001/thumb.webp",
+    "asset_urls": [
+      "/assets/premades/tshirt/pm-001/front.png",
+      "/assets/premades/tshirt/pm-001/back.png"
+    ],
+    "tags": ["Vintage", "Aesthetic", "80s"],
+    "featured": true,
+    "featured_order": 1,
+    "updated_at": "2025-10-10T12:00:00Z"
+  },
+  {
+    "id": "pm-002",
+    "product_slug": "tshirt",
+    "name": "Street Legends",
+    "thumb_url": "/assets/premades/tshirt/pm-002/thumb.webp",
+    "asset_urls": [
+      "/assets/premades/tshirt/pm-002/front.png"
+    ],
+    "tags": ["Urban", "Graffiti", "Hip-Hop"],
+    "featured": true,
+    "featured_order": 2,
+    "updated_at": "2025-10-11T12:00:00Z"
+  },
+  {
+    "id": "pm-003",
+    "product_slug": "tshirt",
+    "name": "Motivated Mindset",
+    "thumb_url": "/assets/premades/tshirt/pm-003/thumb.webp",
+    "asset_urls": [
+      "/assets/premades/tshirt/pm-003/front.png"
+    ],
+    "tags": ["Motivation", "Typography"],
+    "featured": false,
+    "updated_at": "2025-10-12T12:00:00Z"
+  },
+  {
+    "id": "pm-004",
+    "product_slug": "sticker-pack",
+    "name": "Floral Energy Pack",
+    "thumb_url": "/assets/premades/stickers/pm-004/thumb.webp",
+    "asset_urls": [
+      "/assets/premades/stickers/pm-004/sheet.png"
+    ],
+    "tags": ["Flowers", "Nature", "Aesthetic"],
+    "featured": true,
+    "featured_order": 3,
+    "updated_at": "2025-10-13T12:00:00Z"
+  },
+  {
+    "id": "pm-005",
+    "product_slug": "tshirt",
+    "name": "Cosmic Dreams",
+    "thumb_url": "/assets/premades/tshirt/pm-005/thumb.webp",
+    "asset_urls": [
+      "/assets/premades/tshirt/pm-005/front.png"
+    ],
+    "tags": ["Space", "Stars", "Galaxy"],
+    "featured": true,
+    "featured_order": 4,
+    "updated_at": "2025-10-14T12:00:00Z"
+  }
+]
