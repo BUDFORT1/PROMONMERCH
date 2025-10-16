@@ -71,3 +71,22 @@ export default {
     return json({ error: "Not Found", path: pathname }, 404);
   }
 };
+async function q(env, sql, params=[]) {
+  return env.DB.prepare(sql).bind(...params).all();
+}
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+
+    if (url.pathname === "/api/health") {
+      // tiny smoke test
+      const rows = await q(env, "SELECT count(*) as users FROM users");
+      return new Response(JSON.stringify({ ok:true, users: rows.results?.[0]?.users || 0 }), {
+        headers: { "Content-Type": "application/json" }
+      });
+    }
+
+    return new Response("Not Found", { status: 404 });
+  }
+}
