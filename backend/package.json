@@ -1,1 +1,13 @@
-coming
+{
+  "name": "promonmerch-api",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "wrangler dev",
+    "publish": "wrangler publish"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  }
+}
