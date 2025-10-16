@@ -1,0 +1,50 @@
+{
+  "siteName": "Promon Merch",
+  "logo": {
+    "light": "/assets/icons/logo-light.svg",
+    "dark": "/assets/icons/logo-dark.svg",
+    "favicon": "/assets/icons/favicon.png",
+    "icons": {
+      "192": "/assets/icons/icon-192.png",
+      "512": "/assets/icons/icon-512.png"
+    },
+    "alt": "Promon Merch"
+  },
+  "colors": {
+    "primary": "#111827",
+    "accent": "#10b981",
+    "background": "#ffffff",
+    "text": "#0b1220"
+  },
+  "typography": {
+    "heading": "Bebas Neue",
+    "body": "Inter",
+    "scale": 1.0
+  },
+  "hero": {
+    "title": "Custom tees, posters & more",
+    "subtitle": "Mobile-friendly designer. Fast local pickup.",
+    "image": "/assets/img/hero.webp",
+    "imageAlt": "Assorted merch items on a table"
+  },
+  "trust": [
+    "Local pickup available",
+    "Secure Stripe checkout",
+    "Fast turnaround"
+  ],
+  "cta": {
+    "shopMerch": { "label": "Shop Merch", "href": "/merch.html" },
+    "createMerch": { "label": "Create Merch", "href": "/products.html" }
+  },
+  "pickup": {
+    "enabled": true,
+    "label": "Pickup in Springfield",
+    "address": "123 Main St, Springfield, USA",
+    "hours": "Mon–Fri 10–6",
+    "note": "Same-day pickup on select items."
+  },
+  "featureFlags": {
+    "stickyDualCTA": true
+  },
+  "version": "2025.10.15-1"
+}
