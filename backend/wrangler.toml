@@ -2,6 +2,14 @@ name = "promonmerch-api"
 main = "src/index.js"
 compatibility_date = "2025-10-15"
 
+[vars]
+ENVIRONMENT = "dev"
+
+[[d1_databases]]
+binding = "DB"                    # how you’ll access it in code: env.DB
+database_name = "promonmerch"     # human-readable
+database_id = "REPLACE_WITH_D1_ID"  # fill after create (see step 3)
+
 # Optional: set an env flag you can read in code
 [vars]
 ENVIRONMENT = "dev"
@@ -15,5 +23,5 @@ ENVIRONMENT = "dev"
 
 # R2 bucket binding (optional now)
 # [[r2_buckets]]
-# binding = "R2"
+# bindi
 # bucket_name = "promonmerch-assets"
