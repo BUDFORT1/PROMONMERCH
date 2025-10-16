@@ -1,1 +1,15 @@
-coming soon
+name = "promonmerch-api"
+main = "src/index.js"
+compatibility_date = "2025-10-15"
+
+[vars]
+ENVIRONMENT = "dev"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "promonmerch"
+database_id = "your-d1-id"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "promonmerch-assets"
