@@ -1,9 +1,9 @@
 // --- Cloudflare Worker starter (clean) ---
 // CORS + basic security headers
 const cors = {
-  "Access-Control-Allow-Origin": "*", // TODO: set to your Pages domain
+  "Access-Control-Allow-Origin": "https://b3135ffd.promonmerch.pages.dev"
   "Access-Control-Allow-Methods": "GET,POST,PUT,OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization"
+  "Access-Control-Allow-Headers": "Content-Type, Authorization, x-admin-token"
 };
 const sec = {
   "X-Content-Type-Options": "nosniff",
