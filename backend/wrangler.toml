@@ -1,4 +1,4 @@
-Name = "promonmerch-api"
+name = "promonmerch-api"
 main = "src/index.js"
 compatibility_date = "2024-10-01"
 
