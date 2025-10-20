@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Promo N Merch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <link rel="stylesheet" href="/assets/css/mobile.css" />
+  <style>
+    :root{
+      --color-primary:#111827; --color-accent:#10b981; --color-bg:#ffffff; --color-text:#0b1220;
+    }
+    html,body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:16px 16px 100px}
+    /* Header */
+    header{position:sticky;top:0;background:var(--color-bg);z-index:10;border-bottom:1px solid #eee;}
+    .header-inner{display:flex;align-items:center;gap:12px;padding:10px 16px;max-width:1100px;margin:0 auto}
+    .logo{height:28px}
+    .spacer{flex:1}
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr;gap:16px;padding:18px 0}
+    .hero h1{font-size:1.8rem;line-height:1.1;margin:.2rem 0}
+    .hero p{margin:0 0 .5rem;color:#4b5563}
+    .hero img{width:100%;height:auto;border-radius:16px;border:1px solid #eee}
+    .trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+    .trust .pill{border:1px solid #e5e7eb;border-radius:999px;padding:6px 10px;font-size:.85rem}
+    /* Sections */
+    section{margin:22px 0}
+    h2{font-size:1.2rem;margin:.4rem 0 12px}
+    .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(min-width:720px){ .cards{grid-template-columns:repeat(4,1fr)} .hero{grid-template-columns:1.2fr .8fr} .hero h1{font-size:2.2rem} }
+    .card{border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;background:#fff}
+    .card img{width:100%;height:auto;display:block}
+    .card .meta{padding:10px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(min-width:720px){ .grid{grid-template-columns:repeat(4,1fr)} }
+    /* How it works */
+    .steps{display:grid;grid-template-columns:1fr;gap:10px}
+    @media(min-width:720px){ .steps{grid-template-columns:repeat(3,1fr)} }
+    .step{border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#fff}
+    /* Pickup */
+    .pickup{border:1px solid #e5e7eb;border-radius:12px;padding:12px;background:#fff}
+    /* Footer */
+    footer{border-top:1px solid #eee;padding:18px 16px;color:#6b7280}
+    /* Sticky CTA */
+    .sticky{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #e5e7eb;padding:10px 12px;display:flex;gap:10px;align-items:center;padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+    .sticky .btn{flex:1;text-align:center;padding:12px;border-radius:10px;font-weight:600;border:1px solid var(--color-primary)}
+    .btn.primary{background:var(--color-primary);color:#fff}
+    .btn.accent{background:var(--color-accent);color:#032d1f;border-color:var(--color-accent)}
+    .muted{color:#6b7280}
+  </style>
+</head>
+<body>
+  <!-- Header (logo on all pages) -->
+  <header>
+    <div class="header-inner">
+      <a href="/"><img id="site-logo" class="logo" src="/assets/icons/logo-dark.svg" alt="Promon Merch"></a>
+      <div class="spacer"></div>
+      <nav aria-label="Main">
+        <a class="muted" href="/merch.html">Merch Store</a>&nbsp;|&nbsp;
+        <a class="muted" href="/products.html">Create</a>&nbsp;|&nbsp;
+        <a class="muted" href="/account.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div>
+        <h1 id="hero-title">Design it. Wear it.</h1>
+        <p id="hero-sub">Custom tees, posters & more — mobile-friendly designer, fast pickup.</p>
+        <div class="trust" id="trust-row"></div>
+      </div>
+      <div>
+        <img id="hero-image" src="/assets/img/hero.webp" alt="Merch preview">
+      </div>
+    </section>
+
+    <!-- Quick product chooser -->
+    <section>
+      <h2>Start with a product</h2>
+      <div class="cards" id="product-cards"></div>
+    </section>
+
+    <!-- Featured Premades -->
+    <section id="featured-section" hidden>
+      <h2>Featured Premades</h2>
+      <div class="grid" id="featured-grid"></div>
+      <div style="margin-top:12px;">
+        <a href="/merch.html" class="muted">Browse all premades →</a>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section>
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step"><strong>1) Create or Choose</strong><br><span class="muted">Use the designer or pick a premade.</span></div>
+        <div class="step"><strong>2) Approve Proof</strong><br><span class="muted">Review on your phone; request changes.</span></div>
+        <div class="step"><strong>3) Pickup or Ship</strong><br><span class="muted">Local pickup or fast shipping.</span></div>
+      </div>
+    </section>
+
+    <!-- Pickup block -->
+    <section id="pickup" class="pickup">
+      <strong id="pickup-label">Pickup in your city</strong>
+      <div id="pickup-hours" class="muted" style="margin-top:6px;">Mon–Fri 10–6</div>
+      <div id="pickup-address" class="muted"></div>
+    </section>
+  </main>
+
+  <!-- Sticky dual CTA -->
+  <div class="sticky" role="navigation" aria-label="Primary actions">
+    <a id="cta-shop" class="btn accent" href="/merch.html">Shop Merch</a>
+    <a id="cta-create" class="btn primary" href="/products.html">Create Merch</a>
+  </div>
+
+  <footer class="wrap">
+    <div id="footer-brand" class="muted">© <span id="year"></span> Promon Merch</div>
+    <div style="margin-top:6px">
+      <a class="muted" href="/help.html">Help</a> ·
+      <a class="muted" href="/terms.html">Terms</a> ·
+      <a class="muted" href="/privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <!-- Boot script to load brand/products/premades -->
+  <script>
+    const $ = (id)=>document.getElementById(id);
+
+    async function loadJSON(path){
+      const res = await fetch(path, {cache:"no-cache"});
+      if(!res.ok) throw new Error(path+" failed");
+      return res.json();
+    }
+
+    function applyBrand(b){
+      // CSS variables
+      if(b.colors){
+        const r = document.documentElement.style;
+        if(b.colors.primary)   r.setProperty('--color-primary', b.colors.primary);
+        if(b.colors.accent)    r.setProperty('--color-accent',  b.colors.accent);
+        if(b.colors.background)r.setProperty('--color-bg',      b.colors.background);
+        if(b.colors.text)      r.setProperty('--color-text',    b.colors.text);
+      }
+      // Logo
+      const logoEl = $('site-logo');
+      if (b.logo && (b.logo.dark || b.logo.light)) {
+        logoEl.src = b.logo.dark || b.logo.light;
+        logoEl.alt = b.logo.alt || (b.siteName || 'Brand');
+      }
+      // Hero
+      if (b.hero){
+        $('hero-title').textContent = b.hero.title || 'Design it. Wear it.';
+        $('hero-sub').textContent   = b.hero.subtitle || 'Custom tees, posters & more.';
+        if (b.hero.image) {
+          const img = $('hero-image');
+          img.src = b.hero.image;
+          if (b.hero.imageAlt) img.alt = b.hero.imageAlt;
+        }
+      }
+      // Trust badges
+      const trust = $('trust-row'); trust.innerHTML='';
+      (b.trust||[]).slice(0,3).forEach(t=>{
+        const span = document.createElement('span');
+        span.className='pill'; span.textContent=t; trust.appendChild(span);
+      });
+      // Sticky CTA overrides
+      if (b.cta){
+        if (b.cta.shopMerch?.href) $('cta-shop').href = b.cta.shopMerch.href;
+        if (b.cta.shopMerch?.label) $('cta-shop').textContent = b.cta.shopMerch.label;
+        if (b.cta.createMerch?.href) $('cta-create').href = b.cta.createMerch.href;
+        if (b.cta.createMerch?.label) $('cta-create').textContent = b.cta.createMerch.label;
+      }
+      // Pickup
+      if (b.pickup?.enabled){
+        $('pickup').hidden = false;
+        $('pickup-label').textContent = b.pickup.label || 'Pickup available';
+        $('pickup-hours').textContent = b.pickup.hours || '';
+        $('pickup-address').textContent = b.pickup.address || '';
+      } else {
+        $('pickup').hidden = true;
+      }
+      // Title
+      document.title = b.siteName ? `${b.siteName} — Custom Merch` : document.title;
+    }
+
+    function renderProducts(list){
+      const el = $('product-cards'); el.innerHTML = '';
+      list.forEach(p=>{
+        if(!p.enableCreate && !p.enableRequest) return;
+        const a = document.createElement('a');
+        a.className='card'; a.href=`/product.html?slug=${encodeURIComponent(p.slug)}`;
+        a.innerHTML = `
+          <img loading="lazy" src="${p.image || '/assets/img/placeholder.webp'}" alt="${p.name}">
+          <div class="meta">
+            <strong>${p.name}</strong>
+            <div class="muted">${[p.enableCreate?'Create':null,p.enableRequest?'Request':null].filter(Boolean).join(' • ')}</div>
+          </div>`;
+        el.appendChild(a);
+      });
+    }
+
+    function renderFeatured(items){
+      // featured:true sorted by featured_order ASC then updated_at DESC; limit 8
+      const featured = items
+        .filter(i=>i.featured)
+        .sort((a,b)=>{
+          const ao = a.featured_order ?? 9999, bo = b.featured_order ?? 9999;
+          if (ao !== bo) return ao - bo;
+          return new Date(b.updated_at||0) - new Date(a.updated_at||0);
+        })
+        .slice(0,8);
+
+      if (!featured.length){ $('featured-section').hidden = true; return; }
+
+      const grid = $('featured-grid'); grid.innerHTML='';
+      featured.forEach(pm=>{
+        const a = document.createElement('a');
+        a.className='card'; a.href=`/merch.html?id=${encodeURIComponent(pm.id)}`;
+        a.innerHTML = `
+          <img loading="lazy" src="${pm.thumb_url}" alt="${pm.name}">
+          <div class="meta">
+            <strong>${pm.name}</strong>
+            <div class="muted">${pm.product_slug.replaceAll('-',' ')}</div>
+          </div>`;
+        grid.appendChild(a);
+      });
+      $('featured-section').hidden = false;
+    }
+
+    (async function boot(){
+      try{
+        const [brand, products, premades] = await Promise.all([
+          loadJSON('/brand/brand.json'),
+          loadJSON('/catalog/products.json'),
+          loadJSON('/catalog/premades/index.json')
+        ]);
+        applyBrand(brand);
+        renderProducts(products);
+        renderFeatured(premades);
+      }catch(err){
+        console.error('Boot error:', err);
+      }finally{
+        $('year').textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
+</body>
+</html>
