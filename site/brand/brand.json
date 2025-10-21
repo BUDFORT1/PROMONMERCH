@@ -1,5 +1,5 @@
 {
-  "siteName": "Promon Merch",
+  "siteName": "Promo N Merch",
   "logo": {
     "light": "/assets/icons/logo-light.svg",
     "dark": "/assets/icons/logo-dark.svg",
@@ -8,7 +8,7 @@
       "192": "/assets/icons/icon-192.png",
       "512": "/assets/icons/icon-512.png"
     },
-    "alt": "Promon Merch"
+    "alt": "Promo n Merch"
   },
   "colors": {
     "primary": "#111827",
@@ -38,8 +38,8 @@
   },
   "pickup": {
     "enabled": true,
-    "label": "Pickup in Springfield",
-    "address": "123 Main St, Springfield, USA",
+    "label": "Pickup in Norfolk",
+    "address": "PO Box 1187, Norfolk, USA",
     "hours": "Mon–Fri 10–6",
     "note": "Same-day pickup on select items."
   },
