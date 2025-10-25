@@ -5,10 +5,16 @@ compatibility_date = "2024-10-01"
 # Replace these with your own values from Cloudflare Dashboard
 account_id = "b2a7837de98ac273b11ec840560cd417"
 
+"d1_databases": [{
+    "binding": "DB",
+    "database_name": "promonmerch",
+    "database_id": "41af5e3a-9c91-4013-b482-05a38721cff9"
+ }]
 [[d1_databases]]
 binding = "DB"
 database_name = "promonmerch"
 database_id = "41af5e3a-9c91-4013-b482-05a38721cff9"
+
 [[r2_buckets]]
 binding = "R2"
 bucket_name = "promonmerch-assets"
