@@ -126,69 +126,87 @@
     </div>
   </footer>
 
-  <!-- Boot script to load brand/products/premades -->
+  <!-- Boot script to load brand/products/premades from API (with graceful fallback) -->
   <script>
+    const API_BASE = 'https://api.promonmerch.com';
     const $ = (id)=>document.getElementById(id);
 
-    async function loadJSON(path){
-      const res = await fetch(path, {cache:"no-cache"});
-      if(!res.ok) throw new Error(path+" failed");
-      return res.json();
+    async function getJSON(url){
+      const r = await fetch(url, {cache:"no-cache", headers:{Accept:"application/json"}});
+      if(!r.ok) throw new Error(`${url} -> ${r.status}`);
+      return r.json();
+    }
+
+    // Try API, fall back to static file if not present yet
+    async function loadJSON(apiPath, fallbackPath){
+      try { return await getJSON(API_BASE + apiPath); }
+      catch(e){ if (fallbackPath) return getJSON(fallbackPath); throw e; }
     }
 
     function applyBrand(b){
+      // Title + footer brand
+      document.title = (b.name ? `${b.name} — ${b.tagline || 'Custom Merch'}` : document.title);
+      $('footer-brand').innerHTML = `© <span id="year"></span> ${b.name || 'Promon Merch'}`;
+
       // CSS variables
-      if(b.colors){
+      if (b.colors){
         const r = document.documentElement.style;
-        if(b.colors.primary)   r.setProperty('--color-primary', b.colors.primary);
-        if(b.colors.accent)    r.setProperty('--color-accent',  b.colors.accent);
-        if(b.colors.background)r.setProperty('--color-bg',      b.colors.background);
-        if(b.colors.text)      r.setProperty('--color-text',    b.colors.text);
+        if (b.colors.primary)    r.setProperty('--color-primary', b.colors.primary);
+        if (b.colors.accent)     r.setProperty('--color-accent',  b.colors.accent);
+        if (b.colors.background) r.setProperty('--color-bg',      b.colors.background);
+        if (b.colors.text)       r.setProperty('--color-text',    b.colors.text);
       }
+
       // Logo
       const logoEl = $('site-logo');
       if (b.logo && (b.logo.dark || b.logo.light)) {
         logoEl.src = b.logo.dark || b.logo.light;
-        logoEl.alt = b.logo.alt || (b.siteName || 'Brand');
+        logoEl.alt = b.name || 'Brand';
       }
+
       // Hero
       if (b.hero){
         $('hero-title').textContent = b.hero.title || 'Design it. Wear it.';
         $('hero-sub').textContent   = b.hero.subtitle || 'Custom tees, posters & more.';
+
         if (b.hero.image) {
           const img = $('hero-image');
           img.src = b.hero.image;
           if (b.hero.imageAlt) img.alt = b.hero.imageAlt;
         }
+
+        // CTAs from brand.json (ctaShop / ctaCreate)
+        if (b.hero.ctaShop){
+          $('cta-shop').textContent = b.hero.ctaShop.label || 'Shop Merch';
+          $('cta-shop').href        = b.hero.ctaShop.href  || '/merch.html';
+        }
+        if (b.hero.ctaCreate){
+          $('cta-create').textContent = b.hero.ctaCreate.label || 'Create Merch';
+          $('cta-create').href        = b.hero.ctaCreate.href  || '/products.html';
+        }
       }
-      // Trust badges
+
+      // Trust badges (optional)
       const trust = $('trust-row'); trust.innerHTML='';
-      (b.trust||[]).slice(0,3).forEach(t=>{
+      (b.trust || []).slice(0,3).forEach(t=>{
         const span = document.createElement('span');
         span.className='pill'; span.textContent=t; trust.appendChild(span);
       });
-      // Sticky CTA overrides
-      if (b.cta){
-        if (b.cta.shopMerch?.href) $('cta-shop').href = b.cta.shopMerch.href;
-        if (b.cta.shopMerch?.label) $('cta-shop').textContent = b.cta.shopMerch.label;
-        if (b.cta.createMerch?.href) $('cta-create').href = b.cta.createMerch.href;
-        if (b.cta.createMerch?.label) $('cta-create').textContent = b.cta.createMerch.label;
-      }
-      // Pickup
+
+      // Pickup (optional)
       if (b.pickup?.enabled){
         $('pickup').hidden = false;
-        $('pickup-label').textContent = b.pickup.label || 'Pickup available';
-        $('pickup-hours').textContent = b.pickup.hours || '';
+        $('pickup-label').textContent   = b.pickup.label   || 'Pickup available';
+        $('pickup-hours').textContent   = b.pickup.hours   || '';
         $('pickup-address').textContent = b.pickup.address || '';
       } else {
         $('pickup').hidden = true;
       }
-      // Title
-      document.title = b.siteName ? `${b.siteName} — Custom Merch` : document.title;
     }
 
     function renderProducts(list){
       const el = $('product-cards'); el.innerHTML = '';
+      if (!Array.isArray(list)) return;
       list.forEach(p=>{
         if(!p.enableCreate && !p.enableRequest) return;
         const a = document.createElement('a');
@@ -204,8 +222,7 @@
     }
 
     function renderFeatured(items){
-      // featured:true sorted by featured_order ASC then updated_at DESC; limit 8
-      const featured = items
+      const featured = (items || [])
         .filter(i=>i.featured)
         .sort((a,b)=>{
           const ao = a.featured_order ?? 9999, bo = b.featured_order ?? 9999;
@@ -233,14 +250,19 @@
 
     (async function boot(){
       try{
-        const [brand, products, premades] = await Promise.all([
-          loadJSON('/brand/brand.json'),
-          loadJSON('/catalog/products.json'),
-          loadJSON('/catalog/premades/index.json')
-        ]);
+        // Brand from API (fallback to static if ever needed)
+        const brand = await loadJSON('/api/site/brand', '/brand/brand.json');
         applyBrand(brand);
+
+        // Products & premades (API endpoints to add soon; fallback keeps page safe meanwhile)
+        let products = [];
+        try { products = await loadJSON('/api/catalog/products', '/catalog/products.json'); } catch {}
         renderProducts(products);
+
+        let premades = [];
+        try { premades = await loadJSON('/api/catalog/premades', '/catalog/premades/index.json'); } catch {}
         renderFeatured(premades);
+
       }catch(err){
         console.error('Boot error:', err);
       }finally{
